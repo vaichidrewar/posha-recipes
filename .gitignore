@@ -1,0 +1,22 @@
+# Flask backend files (not needed for static site)
+home/
+recipe_backend.zip
+recipes_and_tags_31st_jan_2025.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

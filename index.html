@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posha Recipe Suggestions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Posha recipe suggestions</h1>
+        
+        <div class="recipe-cards">
+            <div class="recipe-card" id="recipe-1">
+                <div class="recipe-name">Loading...</div>
+                <button class="save-btn" data-recipe-index="0">Save Recipe</button>
+            </div>
+            <div class="recipe-card" id="recipe-2">
+                <div class="recipe-name">Loading...</div>
+                <button class="save-btn" data-recipe-index="1">Save Recipe</button>
+            </div>
+            <div class="recipe-card" id="recipe-3">
+                <div class="recipe-name">Loading...</div>
+                <button class="save-btn" data-recipe-index="2">Save Recipe</button>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button id="refresh-btn" class="refresh-button">Refresh suggestion</button>
+        </div>
+        
+        <!-- Saved recipes section -->
+        <div id="saved-recipes-section" class="saved-recipes-section">
+            <h2 class="saved-recipes-title">Your Saved Recipes</h2>
+            <div id="saved-recipes-list" class="saved-recipes-list">
+                <!-- Saved recipes will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
