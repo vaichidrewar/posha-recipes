@@ -14,12 +14,13 @@ function setupEventListeners() {
     // Refresh button
     document.getElementById('refresh-btn').addEventListener('click', refreshRecipes);
     
-    // Save buttons
-    document.querySelectorAll('.save-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const recipeIndex = parseInt(this.getAttribute('data-recipe-index'));
+    // Use event delegation for save buttons to handle dynamic content
+    document.querySelector('.recipe-cards').addEventListener('click', function(e) {
+        if (e.target.classList.contains('save-btn') && !e.target.disabled) {
+            e.preventDefault(); // Prevent any default behavior
+            const recipeIndex = parseInt(e.target.getAttribute('data-recipe-index'));
             saveRecipe(currentRecipes[recipeIndex]);
-        });
+        }
     });
 }
 
@@ -74,8 +75,26 @@ function saveRecipe(recipeName) {
         savedRecipes.push(recipeName);
         localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
         updateSavedRecipesDisplay();
-        refreshRecipes(); // Update save button states
+        
+        // Update only the save button states without refreshing recipes
+        updateSaveButtonStates();
     }
+}
+
+// Update save button states without refreshing recipes
+function updateSaveButtonStates() {
+    currentRecipes.forEach((recipe, index) => {
+        const recipeCard = document.getElementById(`recipe-${index + 1}`);
+        const saveButton = recipeCard.querySelector('.save-btn');
+        
+        if (savedRecipes.includes(recipe)) {
+            saveButton.textContent = 'Saved';
+            saveButton.disabled = true;
+        } else {
+            saveButton.textContent = 'Save Recipe';
+            saveButton.disabled = false;
+        }
+    });
 }
 
 // Remove a recipe from saved list
@@ -85,7 +104,7 @@ function removeRecipe(recipeName) {
         savedRecipes.splice(index, 1);
         localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
         updateSavedRecipesDisplay();
-        refreshRecipes(); // Update save button states
+        updateSaveButtonStates(); // Update save button states
     }
 }
 
